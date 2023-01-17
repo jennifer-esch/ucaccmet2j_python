@@ -1,3 +1,5 @@
+# PART 1
+
 import json
 
 with open ('precipitation.json') as file: # Load json file
@@ -20,6 +22,32 @@ output_data = {
         "station": 'GHCND:US1WAKG0038',
         "state": 'Washington state',
         "total_monthly_precipitation": list_of_months
+    }
+}
+
+with open('results.json', 'w', encoding='utf-8') as file:
+    json.dump(output_data, file, indent = 4)
+
+# PART 2
+
+total_yearly_precipitation = sum(list_of_months)
+print(total_yearly_precipitation)
+
+relative_monthly_precipitation_list = []
+for total_monthly_precipitation in list_of_months:
+    relative_monthly_precipitation = total_monthly_precipitation/total_yearly_precipitation
+    relative_monthly_precipitation_list.append(relative_monthly_precipitation)
+
+print(relative_monthly_precipitation_list)
+
+output_data = {
+    "Seattle": {
+        "station": 'GHCND:US1WAKG0038',
+        "state": 'Washington state',
+        "total monthly precipitation": list_of_months,
+        "total yearly precipitation": total_yearly_precipitation,
+        "relative monthly precipitation": relative_monthly_precipitation_list
+
     }
 }
 
